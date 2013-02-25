@@ -2,8 +2,13 @@
     ViewBag.Title = "Index";
 }
 
+@section Header {
+    <link rel="stylesheet" type="text/css" href="/Content/css/views/planogram/index.css" />
+}
+
 @section Scripts
 {
+    <script></script>
     <script type='text/javascript'>
         Bootstrap.load([
                 "@@/Content/js/views/planogram/index.js"
@@ -11,4 +16,36 @@
     </script>
 }
 
-<h2>PLANOGRAM!</h2>
+
+<div class="row">
+    <div id="sidebar" class="span3">
+        <div class="icon icon-browse" style="height: 25px; width: 25px; border: 1px solid #ffb6c1"></div>
+        <h3>Displays</h3>
+        <ul>
+            <li class="draggable droppable" class="ui-widget-content">
+                <p>Display1</p>
+            </li>
+            <li class="draggable droppable" class="ui-widget-content">
+                <p>Display2</p>
+            </li>
+            <li class="draggable droppable" class="ui-widget-content">
+                <p>Display3</p>
+            </li>
+        </ul>
+        <h3>Playlists</h3>
+        <ul>
+            <li class="draggable" class="ui-widget-content">
+                <p>Playlist1</p>
+            </li>
+            <li class="draggable" class="ui-widget-content">
+                <p>Playlist2</p>
+            </li>
+            <li class="draggable" class="ui-widget-content">
+                <p>Playlist3</p>
+            </li>
+        </ul>
+    </div>
+    <div id="blueprint" class="span9">
+        
+    </div>
+</div>

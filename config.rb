@@ -3,10 +3,10 @@ require 'iq.bootstrap'
 
 # Set this to the root of your project when deployed:
 http_path = './'
-css_dir = 'css'
-sass_dir = 'sass'
-images_dir = 'img'
-javascripts_dir = 'js'
+css_dir = 'Planogram/Content/css/'
+sass_dir = 'Planogram/Content/sass/'
+images_dir = 'Planogram/Content/img/'
+javascripts_dir = 'Planogram/Content/js/'
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed

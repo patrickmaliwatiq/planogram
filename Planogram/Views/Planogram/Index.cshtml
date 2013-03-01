@@ -18,7 +18,7 @@
 
 <div class="row">
     <div id="sidebar" class="span3">
-        <div class="icon icon-browse" style="height: 25px; width: 25px; border: 1px solid #ffb6c1"></div>
+@*        <div class="icon icon-browse" style="height: 25px; width: 25px; border: 1px solid #ffb6c1"></div>*@
         <h3>Displays</h3>
         <div id="displayContainer">
         </div>
@@ -32,9 +32,11 @@
 
 <script type='text/template' id='display-template'>
     <p><%- Name %></p>
-    <ul>
-    <% _.each(PlaylistIds, function(pid) { %><li><%- pid %></li><% }); %>
-    </ul>
+    <% if (playlistsVisible) { %>  
+        <ul class="assignedPlaylists">
+        <% _.each(PlaylistIds, function(pid) { %><li><%- pid %></li><% }); %>
+        </ul>
+    <% } %>
 </script>
 <script type='text/template' id='playlist-template'>
     <p><%- DisplayName %></p>

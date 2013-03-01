@@ -18,8 +18,9 @@
         initialize: function () {
             this.$el.droppable({
                 drop: function (event, ui) {
-                    debugger;
-                }
+                    $(ui.draggable).trigger("displayPlaced", { showPlaylists: true});
+                },
+                accept: '.display'
             });
         }
     });
@@ -52,24 +53,41 @@
         className: "display",
         attributes : function () {
             return {
-                id : this.model.get('Id') || ""
+                id : this.model.get('Id') || "",
             };
         },
         template: _.template($('#display-template').html()),
-        events: {},
+        events: {
+            "displayPlaced": "displayPlaced"
+        },
+        playlistsVisible: false,
         initialize: function () {
-            //this.$el.attr("id", this.model.get("Id") || "");
-            this.model.on('change', this.render());
+            var self = this;
+            _.bindAll(this);
+            this.model.on('change', this.render);
             this.$el.draggable();
             this.$el.droppable({
                 drop: function (event, ui) {
-                    debugger;
-                }
+                    var playlistId = $(ui.draggable).attr("id");
+                    var playlistIds = self.model.get("PlaylistIds");
+                    playlistIds.push(playlistId);
+                    self.model.set({"PlaylistIds": playlistIds },{forceChange: true});
+                },
+                accept: ".playlist",
+                greedy: true
             });
         },
         render: function () {
-            this.$el.html(this.template(this.model.toJSON()));
+            var templateParams = _.clone(this.model.toJSON());
+            templateParams.playlistsVisible = this.playlistsVisible;
+            this.$el.html(this.template(templateParams));
             return this;
+        },
+        displayPlaced: function(event, args) {
+            if (this.playlistsVisible !== args.showPlaylists) {
+                this.playlistsVisible = args.showPlaylists;
+                this.render();
+            }
         }
     });
 
@@ -91,11 +109,16 @@
     Planogram.Views.Playlist = Backbone.View.extend({
         tagName: "div",
         className: "playlist",
+        attributes : function () {
+            return {
+                id : this.model.get('Id') || "",
+            };
+        },
         template: _.template($('#playlist-template').html()),
         events: {},
         initialize: function () {
             this.model.on('change', this.render());
-            this.$el.draggable();
+            this.$el.draggable({ helper: "clone" });
         },
         render: function () {
             this.$el.html(this.template(this.model.toJSON()));

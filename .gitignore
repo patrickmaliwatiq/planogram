@@ -1,11 +1,36 @@
-# Build and Release Folders
-bin/
-bin-debug/
-bin-release/
-
-# Other files and folders
-.settings/
-
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+[Bb]in
+ClientBin
+[Oo]bj
+build
+*.suo
+IQ.IR.MPC.Azure/Service*.cscfg.transformed.cscfg
+IQ.IR.MPC.Azure/Service*.csdef.transformed.csdef
+*.cscfg.tmp
+*.csdef.tmp
+ServiceDefinition.build.csdef
+Log
+_ReSharper.*
+*.user
+*.sln.cache
+*.swp
+*.vssscc
+*.vspscc
+*.build.*
+*.orig
+*~
+.idea/
+release/
+TestOutput/
+Tests/iQ.iR.ConsoleTests/output/
+Tests/iQ.iR.ConsoleTests/App.localhost.config
+.sass-cache/
+AzureBackup/
+*.ncrunchsolution
+IQ.IR.MPC.Azure/csx
+.DS_Store
+.Trashes
+.Spotlight-V100
+*.sublime-project
+*.sublime-workspace
+*.vsp
+*.psess

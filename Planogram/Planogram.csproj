@@ -172,6 +172,8 @@
     <Content Include="Content\img\sprites\icon\adplay.png" />
     <Content Include="Content\img\sprites\icon\browse.png" />
     <Content Include="Content\img\sprites\icon\stream.png" />
+    <Content Include="Content\js\models\playlist.js" />
+    <Content Include="Content\js\models\display.js" />
     <Content Include="Content\js\strapon.js" />
     <Content Include="Content\js\views\planogram\index.js" />
     <Content Include="favicon.ico" />

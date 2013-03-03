@@ -168,10 +168,10 @@
     <Content Include="Content\css\planogram.css" />
     <Content Include="Content\css\views\planogram\index.css" />
     <Content Include="Content\img\planogram.jpg" />
-    <Content Include="Content\img\sprites\icon-s576c5ee61c.png" />
-    <Content Include="Content\img\sprites\icon\adplay.png" />
-    <Content Include="Content\img\sprites\icon\browse.png" />
-    <Content Include="Content\img\sprites\icon\stream.png" />
+    <Content Include="Content\img\sprites\my-icons\adplay.png" />
+    <Content Include="Content\img\sprites\my-icons\browse.png" />
+    <Content Include="Content\img\sprites\my-icons\stream.png" />
+    <Content Include="Content\js\constants.js" />
     <Content Include="Content\js\models\playlist.js" />
     <Content Include="Content\js\models\display.js" />
     <Content Include="Content\js\strapon.js" />
@@ -200,6 +200,7 @@
     <Content Include="Views\Planogram\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="config.rb" />
     <None Include="Content\sass\planogram.scss" />
     <None Include="Content\sass\views\planogram\index.scss" />
     <None Include="Content\sass\_iq.bootstrap.scss" />
@@ -220,7 +221,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>50511</DevelopmentServerPort>
+          <DevelopmentServerPort>49937</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

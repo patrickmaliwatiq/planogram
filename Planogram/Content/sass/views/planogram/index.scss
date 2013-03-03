@@ -15,6 +15,23 @@
     }
 }
 
+.icon {
+    float: left;
+}
+
+.active-display {
+    background-color: #FA58F4;
+}
+
+.display, .playlist{
+    font-family: "Comic Sans MS";
+    font-size: 25px;
+    color: #2EFEF7;
+    min-height: 100px;
+    width: 250px;
+    border: 2px solid #F5A9A9;
+}
+
 li {
     list-style: none;
 }

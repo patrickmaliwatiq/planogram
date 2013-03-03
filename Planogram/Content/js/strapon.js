@@ -4,6 +4,7 @@ Planogram.App = {};
 Planogram.Views = {};
 Planogram.Models = {};
 Planogram.Collections = {};
+Planogram.Constants = {};
 
 //IE8 is missing console... :/
 if (typeof console === "undefined" || typeof console.log === "undefined") {
@@ -19,6 +20,7 @@ Bootstrap.waitCallbackFunction = function (callback) {
 Bootstrap.load([
         "jquery",
         "jquery.ui",
-        "backbone"
+        "backbone",
+        "@/Content/js/constants.js"
     ], function () {
     });

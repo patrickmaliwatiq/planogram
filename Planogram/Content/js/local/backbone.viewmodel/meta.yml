@@ -1,5 +1,0 @@
----
-docs: https://github.com/MrHayato/Backbone.ViewModels
-description: Simple Backbone implementation of View Models.
-dependencies:
-  - backbone

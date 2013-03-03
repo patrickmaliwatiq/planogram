@@ -1,16 +1,8 @@
 @import "iQ.Bootstrap/variables";
 @import "iQ.Bootstrap/components/mixins";
 
-@import "../img/sprites/icon/*.png";
-//@include all-icon-sprites;
-
-/*
-$default-target-dir: "../../Content/img/sprites/";
-$default-icon-ext: ".png";
-$icon-dir: "icon/";
-$icon-target: $default-target-dir + "icon" + $default-icon-ext;
-$icon-map: sprite-map("sprites/" + $icon-dir + "*" + $default-icon-ext);
-$rename-icon: rename-sprite($icon-map, $icon-target);
-*/
+$my-icons-sprite-dimensions: true;
+@import "sprites/my-icons/*.png";
+@include all-my-icons-sprites;
 
 @import 'iq.bootstrap';

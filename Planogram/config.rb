@@ -3,17 +3,17 @@ require 'iq.bootstrap'
 
 # Set this to the root of your project when deployed:
 http_path = './'
-css_dir = 'Planogram/Content/css/'
-sass_dir = 'Planogram/Content/sass/'
-images_dir = 'Planogram/Content/img/'
-javascripts_dir = 'Planogram/Content/js/'
+css_dir = 'Content/css/'
+sass_dir = 'Content/sass/'
+images_dir = 'Content/img/'
+javascripts_dir = 'Content/js/'
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed
 output_style = :compressed
 
 # To enable relative paths to assets via compass helper functions. Uncomment:
-# relative_assets = true
+relative_assets = true
 
 # To disable debugging comments that display the original location of your selectors. Uncomment:
 # line_comments = false

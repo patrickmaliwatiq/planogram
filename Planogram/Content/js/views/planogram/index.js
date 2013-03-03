@@ -8,8 +8,9 @@
             Planogram.App.blueprint = new Planogram.Views.Blueprint();
             Planogram.App.sidebar = new Planogram.Views.Sidebar();
 
-            Planogram.App.displays.fetch();
             Planogram.App.playlists.fetch();
+            Planogram.App.displays.fetch();
+
         }
     });
 
@@ -42,7 +43,19 @@
         render: function () {
             var self = this;
             Planogram.App.displays.each(function (display) {
-                var displayView = new Planogram.Views.Display({ model: display });
+                var displayView;
+                switch (display.get("Type")) {
+                case Planogram.Constants.DisplayType.Browse:
+                    displayView = new Planogram.Views.BrowseDisplay({ model: display });
+                    break;
+                case Planogram.Constants.DisplayType.AdPlay:
+                    displayView = new Planogram.Views.AdPlayDisplay({ model: display });
+                    break;
+                case Planogram.Constants.DisplayType.Stream:
+                    displayView = new Planogram.Views.StreamDisplay({ model: display });
+                    break;
+                default:
+                }
                 self.$el.append(displayView.render().el);
             });
         }
@@ -51,43 +64,79 @@
     Planogram.Views.Display = Backbone.View.extend({
         tagName: "div",
         className: "display",
-        attributes : function () {
+        attributes: function() {
             return {
-                id : this.model.get('Id') || "",
+                id: this.model.get('Id') || "",
             };
         },
-        template: _.template($('#display-template').html()),
-        events: {
-            "displayPlaced": "displayPlaced"
-        },
-        playlistsVisible: false,
-        initialize: function () {
+        droppable: null,
+        droppableAccept: "",
+        initialize: function() {
             var self = this;
             _.bindAll(this);
             this.model.on('change', this.render);
+            this.$el.on('displayPlaced', this.displayPlaced);
             this.$el.draggable();
-            this.$el.droppable({
-                drop: function (event, ui) {
+            this.droppable = this.$el.droppable({
+                drop: function(event, ui) {
                     var playlistId = $(ui.draggable).attr("id");
                     var playlistIds = self.model.get("PlaylistIds");
                     playlistIds.push(playlistId);
-                    self.model.set({"PlaylistIds": playlistIds },{forceChange: true});
+                    self.model.set({ "PlaylistIds": playlistIds }, { forceChange: true });
                 },
-                accept: ".playlist",
+                accept: this.droppableAccept,
                 greedy: true
             });
         },
-        render: function () {
+        render: function() {
             var templateParams = _.clone(this.model.toJSON());
             templateParams.playlistsVisible = this.playlistsVisible;
+            var assignedPlaylists = [];
+            debugger;
+            _.each(this.model.get("PlaylistIds"), function(playlistId) {
+            var playlist = _.find(Planogram.App.playlists.models, function(pl) {
+                    return pl.get("Id") === playlistId;
+                });
+                if (playlist) {
+                    assignedPlaylists.push(playlist.toJSON());
+                }
+            });
+            templateParams.assignedPlaylists = assignedPlaylists;
             this.$el.html(this.template(templateParams));
             return this;
         },
         displayPlaced: function(event, args) {
+            this.$el.droppable({activeClass: "active-display"});
             if (this.playlistsVisible !== args.showPlaylists) {
                 this.playlistsVisible = args.showPlaylists;
                 this.render();
             }
+        }
+    });
+
+    Planogram.Views.BrowseDisplay = Planogram.Views.Display.extend({
+        className: "browse display",
+        droppableAccept: ".playlist.browse",
+        template: _.template($('#browse-display-template').html()),
+        events: {
+            
+        }
+    });
+
+    Planogram.Views.AdPlayDisplay = Planogram.Views.Display.extend({
+        className: "adplay display",
+        droppableAccept: ".playlist.adplay",
+        template: _.template($('#adplay-display-template').html()),
+        events: {
+            
+        }
+    });
+
+    Planogram.Views.StreamDisplay = Planogram.Views.Display.extend({
+        className: "stream display",
+        droppableAccept: ".playlist.stream",
+        template: _.template($('#stream-display-template').html()),
+        events: {
         }
     });
 
@@ -99,8 +148,21 @@
         },
         render: function () {
             var self = this;
+            debugger;
             Planogram.App.playlists.each(function (playlist) {
-                var playlistView = new Planogram.Views.Playlist({ model: playlist });
+                var playlistView;
+                switch (playlist.get("Type")) {
+                case Planogram.Constants.PlaylistTypes.Browse:
+                    playlistView = new Planogram.Views.BrowsePlaylist({ model: playlist });
+                    break;
+                case Planogram.Constants.PlaylistTypes.AdPlay:
+                    playlistView = new Planogram.Views.AdPlayPlaylist({ model: playlist });
+                    break;
+                case Planogram.Constants.PlaylistTypes.Stream:
+                    playlistView = new Planogram.Views.StreamPlaylist({ model: playlist });
+                    break;
+                default:
+                }
                 self.$el.append(playlistView.render().el);
             });
         }
@@ -114,7 +176,6 @@
                 id : this.model.get('Id') || "",
             };
         },
-        template: _.template($('#playlist-template').html()),
         events: {},
         initialize: function () {
             this.model.on('change', this.render());
@@ -126,8 +187,22 @@
         }
     });
 
+    Planogram.Views.BrowsePlaylist = Planogram.Views.Playlist.extend({
+        className: "playlist browse",
+        template: _.template($('#browse-playlist-template').html()),
+    });
+    Planogram.Views.AdPlayPlaylist = Planogram.Views.Playlist.extend({
+        className: "playlist adplay",
+        template: _.template($('#adplay-playlist-template').html()),
+    });
+    Planogram.Views.StreamPlaylist = Planogram.Views.Playlist.extend({
+        className: "playlist stream",
+        template: _.template($('#stream-playlist-template').html()),
+    });
     Planogram.App.Page = new Planogram.App.Page();
 };
+
+
 
 Bootstrap.load([
         "@/Content/js/models/display.js",

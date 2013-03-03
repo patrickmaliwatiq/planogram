@@ -29,9 +29,9 @@ Planogram.Collections.Displays = Backbone.Collection.extend({
     model: Planogram.Models.Display,
     fetch: function() {
         this.reset([
-            new Planogram.Models.Display({Id: "libdog-display", Name: "Libdog's Display", PlaylistIds: ["xxx"]}),
-            new Planogram.Models.Display({Id: "pat-display", Name: "Pat's Display"}),
-            new Planogram.Models.Display({Id: "someones-display", Name: "Someone's Display"})
+            new Planogram.Models.Display({Id: "browse-display", Name: "Browse Display", Type: Planogram.Constants.DisplayType.Browse, PlaylistIds: ["browse-playlist"]}),
+            new Planogram.Models.Display({Id: "adplay-display", Name: "AdPlay Display", Type: Planogram.Constants.DisplayType.AdPlay,}),
+            new Planogram.Models.Display({Id: "stream-display", Name: "Stream Display", Type: Planogram.Constants.DisplayType.Stream,})
         ]);
     }
 });

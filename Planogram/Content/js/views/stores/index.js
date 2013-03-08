@@ -11,7 +11,6 @@
         },
         editPlanogram: function() {
             var selectedStore = $('.radio.store :checked');
-            debugger;
             Planogram.Utilities.redirect("/planogram/edit?storeId=" + selectedStore.attr('id'));
         }
     });

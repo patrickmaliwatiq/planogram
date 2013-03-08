@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Nancy.Bootstrappers.Windsor</id>
+    <version>0.16.1</version>
+    <title>Nancy.Bootstrappers.Windsor</title>
+    <authors>Andreas Hakansson,  Steven Robbins and contributors</authors>
+    <owners>Andreas Hakansson,  Steven Robbins and contributors</owners>
+    <licenseUrl>https://github.com/NancyFx/Nancy.Bootstrappers.Windsor/blob/master/license.txt</licenseUrl>
+    <projectUrl>http://nancyfx.org/</projectUrl>
+    <iconUrl>http://nancyfx.org/nancy-nuget.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A Windsor bootstrapper for the Nancy web framework.</description>
+    <summary>Nancy is a lightweight web framework for the .Net platform, inspired by Sinatra. Nancy aim at delivering a low ceremony approach to building light, fast web applications.</summary>
+    <releaseNotes />
+    <copyright>Andreas Håkansson, Steven Robbins and contributors</copyright>
+    <language>en-US</language>
+    <tags>Nancy Windsor</tags>
+    <dependencies>
+      <dependency id="Nancy" version="0.16.1" />
+      <dependency id="Castle.Windsor" version="3.1.0" />
+    </dependencies>
+  </metadata>
+</package>

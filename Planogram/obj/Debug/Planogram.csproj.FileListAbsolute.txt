@@ -104,3 +104,12 @@ C:\Workspace\Planogram\Planogram\bin\DotNetOpenAuth.OAuth.Consumer.xml
 C:\Workspace\Planogram\Planogram\bin\DotNetOpenAuth.OAuth.xml
 C:\Workspace\Planogram\Planogram\bin\DotNetOpenAuth.OpenId.xml
 C:\Workspace\Planogram\Planogram\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Workspace\Planogram\Planogram\bin\Nancy.dll
+C:\Workspace\Planogram\Planogram\bin\Castle.Windsor.dll
+C:\Workspace\Planogram\Planogram\bin\Nancy.Bootstrappers.Windsor.dll
+C:\Workspace\Planogram\Planogram\bin\Planogram.Server.dll
+C:\Workspace\Planogram\Planogram\bin\Planogram.Server.pdb
+C:\Workspace\Planogram\Planogram\bin\Castle.Windsor.xml
+C:\Workspace\Planogram\Planogram\bin\Nancy.Hosting.Aspnet.dll
+C:\Workspace\Planogram\Planogram\bin\Castle.Core.dll
+C:\Workspace\Planogram\Planogram\bin\Castle.Core.xml

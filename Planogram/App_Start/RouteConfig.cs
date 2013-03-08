@@ -12,7 +12,7 @@ namespace Planogram
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+            routes.IgnoreRoute("api/{*route}");
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

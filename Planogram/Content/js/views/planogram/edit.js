@@ -17,6 +17,14 @@
     Planogram.Views.Blueprint = Backbone.View.extend({
         el: '#blueprint',
         initialize: function () {
+            Planogram.Utilities.makeApiCall("/planogram/" + STORE_ID, "GET", {}, function() {
+            }, function() {
+                //success
+            },
+            function() {
+                //error
+            });
+          
             this.$el.droppable({
                 drop: function (event, ui) {
                     $(ui.draggable).trigger("displayPlaced", { showPlaylists: true});

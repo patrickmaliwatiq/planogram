@@ -16,7 +16,7 @@ namespace Planogram
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Planogram", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Stores", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

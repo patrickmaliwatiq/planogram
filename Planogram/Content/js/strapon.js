@@ -5,6 +5,7 @@ Planogram.Views = {};
 Planogram.Models = {};
 Planogram.Collections = {};
 Planogram.Constants = {};
+Planogram.Utilities = {};
 
 //IE8 is missing console... :/
 if (typeof console === "undefined" || typeof console.log === "undefined") {
@@ -21,6 +22,7 @@ Bootstrap.load([
         "jquery",
         "jquery.ui",
         "backbone",
-        "@/Content/js/constants.js"
+        "@/Content/js/constants.js",
+        "@/Content/js/utilities.js"
     ], function () {
     });

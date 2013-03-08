@@ -82,19 +82,16 @@
             this.$el.droppable({
                 drop: function(event, ui) {
                     var playlistId = $(ui.draggable).attr("id");
-                    var playlistIds = self.model.get("PlaylistIds");
-                    
-                    // XXX: Pull this logic out
-                    if (playlistIds.length === 1 && (self.model.get("Type") === Planogram.Constants.DisplayType.AdPlay
-                        || self.model.get("Type") === Planogram.Constants.DisplayType.Stream)) 
-                        return;
-                    
-                    playlistIds.push(playlistId);
-                    self.model.set({ "PlaylistIds": playlistIds }, { forceChange: true });
+                    self.drop(playlistId);
                 },
                 accept: this.droppableAccept,
                 greedy: true
             });
+        },
+        drop: function(playlistId) {
+            var playlistIds = this.model.get("PlaylistIds");
+            playlistIds.push(playlistId);
+            this.model.set({ "PlaylistIds": playlistIds }, { forceChange: true });
         },
         render: function() {
             var templateParams = _.clone(this.model.toJSON());
@@ -120,11 +117,11 @@
             }
         },
         removePlaylist: function(event) {
-            debugger;
-            var rowIndex = $(event.currentTarget.parentElement).attr("rowIndex");
+            var playlistId = $(event.currentTarget.parentElement).attr("id");
             var playlists = this.model.get("PlaylistIds");
-            if (rowIndex >= 0) {
-                playlists.splice(rowIndex, 1);
+            var itemIndex = _.indexOf(playlists, playlistId);
+            if (itemIndex >= 0) {
+                playlists.splice(itemIndex, 1);
             }
             this.model.set({ "PlaylistIds": playlists }, { forceChange: true });
         }
@@ -139,6 +136,13 @@
         initialize: function() {
             this.events = _.extend({}, Planogram.Views.Display.prototype.events, this.events);
             Planogram.Views.Display.prototype.initialize.call(this);
+        },
+        drop: function(playlistId) {
+            var playlistIds = this.model.get("PlaylistIds");
+            if (_.indexOf(playlistIds, playlistId) >= 0)
+                return;
+            playlistIds.push(playlistId);
+            this.model.set({ "PlaylistIds": playlistIds }, { forceChange: true });
         }
     });
 
@@ -151,6 +155,14 @@
         initialize: function() {
             this.events = _.extend({}, Planogram.Views.Display.prototype.events, this.events);
             Planogram.Views.Display.prototype.initialize.call(this);
+        },
+        drop: function(playlistId) {
+            var playlistIds = this.model.get("PlaylistIds");
+            if (playlistIds.length === 1)
+                return;
+            
+            playlistIds.push(playlistId);
+            this.model.set({ "PlaylistIds": playlistIds }, { forceChange: true });
         }
     });
 
@@ -163,6 +175,14 @@
         initialize: function() {
             this.events = _.extend({}, Planogram.Views.Display.prototype.events, this.events);
             Planogram.Views.Display.prototype.initialize.call(this);
+        },
+        drop: function(playlistId) {
+            var playlistIds = this.model.get("PlaylistIds");
+            if (playlistIds.length === 1)
+                return;
+            
+            playlistIds.push(playlistId);
+            this.model.set({ "PlaylistIds": playlistIds }, { forceChange: true });
         }
     });
 

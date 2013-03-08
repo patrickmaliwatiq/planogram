@@ -19,8 +19,8 @@
     }
 });
 
-Planogram.Collections.Displays = Backbone.Collection.extend({
-    model: Planogram.Models.Display,
+Planogram.Collections.Stores = Backbone.Collection.extend({
+    model: Planogram.Models.Store,
     fetch: function () {
         this.reset([
             new Planogram.Models.Store({ Id: "london-drugs", Name: "London Drugs", AccountId: "account-1"}),

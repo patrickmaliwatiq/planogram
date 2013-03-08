@@ -3,16 +3,16 @@
 }
 
 @section Header {
-    <link rel="stylesheet" type="text/css" href="/Content/css/views/planogram/index.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/css/views/planogram/edit.css" />
 }
 
 @section Scripts
 {
-    <script></script>
     <script type='text/javascript'>
+        var STORE_ID = '@ViewBag.StoreId';
         Bootstrap.load([
-                "@@/Content/js/views/planogram/index.js"
-            ]);
+            "@@/Content/js/views/planogram/edit.js"
+        ]);
     </script>
 }
 
@@ -35,8 +35,8 @@
     <p><%- Name %></p>
     <% if (playlistsVisible) { %>  
         <ul class="assignedPlaylists">
-        <% _.each(assignedPlaylists, function(playlist, rowIndex) { %>
-            <li class="assigned-playlist <%- playlist.Id %>" rowIndex = <%- rowIndex %>><%- playlist.DisplayName %>
+        <% _.each(assignedPlaylists, function(playlist) { %>
+            <li id=<%- playlist.Id %> class="assigned-playlist"><%- playlist.DisplayName %>
                 <span class="remove clickable">x</span>
             </li><% }); %>
         </ul>
@@ -48,7 +48,7 @@
     <% if (playlistsVisible) { %>  
         <ul class="assignedPlaylists">
         <% _.each(assignedPlaylists, function(playlist) { %>
-            <li class="assigned-playlist <%- playlist.Id %>" rowIndex = <%- rowIndex %>><%- playlist.DisplayName %>
+            <li id=<%- playlist.Id %> class="assigned-playlist"><%- playlist.DisplayName %>
                 <span class="remove clickable">x</span>
             </li><% }); %>
         </ul>
@@ -60,7 +60,7 @@
     <% if (playlistsVisible) { %>  
         <ul class="assignedPlaylists">
         <% _.each(assignedPlaylists, function(playlist) { %>
-            <li class="assigned-playlist <%- playlist.Id %>" rowIndex = <%- rowIndex %>><%- playlist.DisplayName %>
+            <li id=<%- playlist.Id %> class="assigned-playlist"><%- playlist.DisplayName %>
                 <span class="remove clickable">x</span>
             </li><% }); %>
         </ul>

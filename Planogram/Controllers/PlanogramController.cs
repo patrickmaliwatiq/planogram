@@ -9,10 +9,11 @@ namespace Planogram.Controllers
     public class PlanogramController : Controller
     {
         //
-        // GET: /Planogram/
+        // GET: /Planogram/Edit
 
-        public ActionResult Index()
+        public ActionResult Edit(string storeId) //TODO: switch to Guid once we get real data
         {
+            ViewBag.StoreId = storeId;
             return View();
         }
 

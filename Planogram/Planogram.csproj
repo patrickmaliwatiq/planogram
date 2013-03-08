@@ -159,6 +159,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\PlanogramController.cs" />
+    <Compile Include="Controllers\StoresController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -166,7 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\planogram.css" />
-    <Content Include="Content\css\views\planogram\index.css" />
+    <Content Include="Content\css\views\planogram\edit.css" />
     <Content Include="Content\img\planogram.jpg" />
     <Content Include="Content\img\sprites\my-icons\adplay.png" />
     <Content Include="Content\img\sprites\my-icons\browse.png" />
@@ -176,7 +177,9 @@
     <Content Include="Content\js\models\playlist.js" />
     <Content Include="Content\js\models\display.js" />
     <Content Include="Content\js\strapon.js" />
-    <Content Include="Content\js\views\planogram\index.js" />
+    <Content Include="Content\js\utilities.js" />
+    <Content Include="Content\js\views\planogram\edit.js" />
+    <Content Include="Content\js\views\stores\index.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -198,13 +201,14 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Planogram\Index.cshtml" />
+    <Content Include="Views\Planogram\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config.rb" />
     <None Include="Content\sass\planogram.scss" />
-    <None Include="Content\sass\views\planogram\index.scss" />
+    <None Include="Content\sass\views\planogram\edit.scss" />
     <None Include="Content\sass\_iq.bootstrap.scss" />
+    <Content Include="Views\Stores\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -222,7 +226,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>49937</DevelopmentServerPort>
+          <DevelopmentServerPort>64063</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

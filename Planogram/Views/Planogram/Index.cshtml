@@ -35,7 +35,10 @@
     <p><%- Name %></p>
     <% if (playlistsVisible) { %>  
         <ul class="assignedPlaylists">
-        <% _.each(assignedPlaylists, function(playlist) { %><li><%- playlist.DisplayName %></li><% }); %>
+        <% _.each(assignedPlaylists, function(playlist, rowIndex) { %>
+            <li class="assigned-playlist <%- playlist.Id %>" rowIndex = <%- rowIndex %>><%- playlist.DisplayName %>
+                <span class="remove clickable">x</span>
+            </li><% }); %>
         </ul>
     <% } %>
 </script>
@@ -44,7 +47,10 @@
     <p><%- Name %></p>
     <% if (playlistsVisible) { %>  
         <ul class="assignedPlaylists">
-        <% _.each(assignedPlaylists, function(playlist) { %><li><%- playlist.DisplayName %></li><% }); %>
+        <% _.each(assignedPlaylists, function(playlist) { %>
+            <li class="assigned-playlist <%- playlist.Id %>" rowIndex = <%- rowIndex %>><%- playlist.DisplayName %>
+                <span class="remove clickable">x</span>
+            </li><% }); %>
         </ul>
     <% } %>
 </script>
@@ -53,7 +59,10 @@
     <p><%- Name %></p>
     <% if (playlistsVisible) { %>  
         <ul class="assignedPlaylists">
-        <% _.each(assignedPlaylists, function(playlist) { %><li><%- playlist.DisplayName %></li><% }); %>
+        <% _.each(assignedPlaylists, function(playlist) { %>
+            <li class="assigned-playlist <%- playlist.Id %>" rowIndex = <%- rowIndex %>><%- playlist.DisplayName %>
+                <span class="remove clickable">x</span>
+            </li><% }); %>
         </ul>
     <% } %>
 </script>

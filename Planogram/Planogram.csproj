@@ -172,6 +172,7 @@
     <Content Include="Content\img\sprites\my-icons\browse.png" />
     <Content Include="Content\img\sprites\my-icons\stream.png" />
     <Content Include="Content\js\constants.js" />
+    <Content Include="Content\js\models\store.js" />
     <Content Include="Content\js\models\playlist.js" />
     <Content Include="Content\js\models\display.js" />
     <Content Include="Content\js\strapon.js" />

@@ -64,23 +64,31 @@
     Planogram.Views.Display = Backbone.View.extend({
         tagName: "div",
         className: "display",
+        events: {
+            "displayPlaced" : "displayPlaced",
+            "click .assigned-playlist .remove" : "removePlaylist"
+        },
         attributes: function() {
             return {
                 id: this.model.get('Id') || "",
             };
         },
-        droppable: null,
         droppableAccept: "",
         initialize: function() {
             var self = this;
             _.bindAll(this);
             this.model.on('change', this.render);
-            this.$el.on('displayPlaced', this.displayPlaced);
             this.$el.draggable();
-            this.droppable = this.$el.droppable({
+            this.$el.droppable({
                 drop: function(event, ui) {
                     var playlistId = $(ui.draggable).attr("id");
                     var playlistIds = self.model.get("PlaylistIds");
+                    
+                    // XXX: Pull this logic out
+                    if (playlistIds.length === 1 && (self.model.get("Type") === Planogram.Constants.DisplayType.AdPlay
+                        || self.model.get("Type") === Planogram.Constants.DisplayType.Stream)) 
+                        return;
+                    
                     playlistIds.push(playlistId);
                     self.model.set({ "PlaylistIds": playlistIds }, { forceChange: true });
                 },
@@ -92,7 +100,6 @@
             var templateParams = _.clone(this.model.toJSON());
             templateParams.playlistsVisible = this.playlistsVisible;
             var assignedPlaylists = [];
-            debugger;
             _.each(this.model.get("PlaylistIds"), function(playlistId) {
             var playlist = _.find(Planogram.App.playlists.models, function(pl) {
                     return pl.get("Id") === playlistId;
@@ -111,6 +118,15 @@
                 this.playlistsVisible = args.showPlaylists;
                 this.render();
             }
+        },
+        removePlaylist: function(event) {
+            debugger;
+            var rowIndex = $(event.currentTarget.parentElement).attr("rowIndex");
+            var playlists = this.model.get("PlaylistIds");
+            if (rowIndex >= 0) {
+                playlists.splice(rowIndex, 1);
+            }
+            this.model.set({ "PlaylistIds": playlists }, { forceChange: true });
         }
     });
 
@@ -118,8 +134,11 @@
         className: "browse display",
         droppableAccept: ".playlist.browse",
         template: _.template($('#browse-display-template').html()),
-        events: {
-            
+        events:{
+        },
+        initialize: function() {
+            this.events = _.extend({}, Planogram.Views.Display.prototype.events, this.events);
+            Planogram.Views.Display.prototype.initialize.call(this);
         }
     });
 
@@ -128,7 +147,10 @@
         droppableAccept: ".playlist.adplay",
         template: _.template($('#adplay-display-template').html()),
         events: {
-            
+        },
+        initialize: function() {
+            this.events = _.extend({}, Planogram.Views.Display.prototype.events, this.events);
+            Planogram.Views.Display.prototype.initialize.call(this);
         }
     });
 
@@ -137,6 +159,10 @@
         droppableAccept: ".playlist.stream",
         template: _.template($('#stream-display-template').html()),
         events: {
+        },
+        initialize: function() {
+            this.events = _.extend({}, Planogram.Views.Display.prototype.events, this.events);
+            Planogram.Views.Display.prototype.initialize.call(this);
         }
     });
 
@@ -148,7 +174,6 @@
         },
         render: function () {
             var self = this;
-            debugger;
             Planogram.App.playlists.each(function (playlist) {
                 var playlistView;
                 switch (playlist.get("Type")) {

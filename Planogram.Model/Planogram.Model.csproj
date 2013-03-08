@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E2E02318-B92A-4D0F-AE51-54805A130151}</ProjectGuid>
+    <ProjectGuid>{5C04E38A-8BB0-47B4-A8E6-194F736321F8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Planogram.Server</RootNamespace>
-    <AssemblyName>Planogram.Server</AssemblyName>
+    <RootNamespace>Planogram.Model</RootNamespace>
+    <AssemblyName>Planogram.Model</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,46 +31,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core, Version=3.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Castle.Core.3.1.0\lib\net40-client\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Windsor, Version=3.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Castle.Windsor.3.1.0\lib\net40\Castle.Windsor.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="MongoDB.Bson">
       <HintPath>..\packages\mongocsharpdriver.1.7.1\lib\net35\MongoDB.Bson.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver">
-      <HintPath>..\packages\mongocsharpdriver.1.7.1\lib\net35\MongoDB.Driver.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Persistence\IDocumentRepository.cs" />
-    <Compile Include="Persistence\MongoDbFactory.cs" />
-    <Compile Include="Persistence\MongoRepository.cs" />
-    <Compile Include="Planogram\IPlanogramProvider.cs" />
-    <Compile Include="Planogram\PlanogramProvider.cs" />
-    <Compile Include="WindsorConfigurator.cs" />
+    <Compile Include="PlanogramModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Planogram.Model\Planogram.Model.csproj">
-      <Project>{5C04E38A-8BB0-47B4-A8E6-194F736321F8}</Project>
-      <Name>Planogram.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

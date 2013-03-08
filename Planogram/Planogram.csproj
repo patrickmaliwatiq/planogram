@@ -224,6 +224,10 @@
     <Content Include="Views\Stores\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Planogram.Model\Planogram.Model.csproj">
+      <Project>{5C04E38A-8BB0-47B4-A8E6-194F736321F8}</Project>
+      <Name>Planogram.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Planogram.Server\Planogram.Server.csproj">
       <Project>{E2E02318-B92A-4D0F-AE51-54805A130151}</Project>
       <Name>Planogram.Server</Name>

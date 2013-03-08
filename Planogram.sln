@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planogram", "Planogram\Plan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planogram.Server", "Planogram.Server\Planogram.Server.csproj", "{E2E02318-B92A-4D0F-AE51-54805A130151}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planogram.Model", "Planogram.Model\Planogram.Model.csproj", "{5C04E38A-8BB0-47B4-A8E6-194F736321F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,16 @@ Global
 		{E2E02318-B92A-4D0F-AE51-54805A130151}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E2E02318-B92A-4D0F-AE51-54805A130151}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E2E02318-B92A-4D0F-AE51-54805A130151}.Release|x86.ActiveCfg = Release|Any CPU
+		{5C04E38A-8BB0-47B4-A8E6-194F736321F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C04E38A-8BB0-47B4-A8E6-194F736321F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C04E38A-8BB0-47B4-A8E6-194F736321F8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5C04E38A-8BB0-47B4-A8E6-194F736321F8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5C04E38A-8BB0-47B4-A8E6-194F736321F8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5C04E38A-8BB0-47B4-A8E6-194F736321F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C04E38A-8BB0-47B4-A8E6-194F736321F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C04E38A-8BB0-47B4-A8E6-194F736321F8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5C04E38A-8BB0-47B4-A8E6-194F736321F8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5C04E38A-8BB0-47B4-A8E6-194F736321F8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

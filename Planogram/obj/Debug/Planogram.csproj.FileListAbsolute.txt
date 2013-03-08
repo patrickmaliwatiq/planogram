@@ -111,5 +111,13 @@ C:\Workspace\Planogram\Planogram\bin\Planogram.Server.dll
 C:\Workspace\Planogram\Planogram\bin\Planogram.Server.pdb
 C:\Workspace\Planogram\Planogram\bin\Castle.Windsor.xml
 C:\Workspace\Planogram\Planogram\bin\Nancy.Hosting.Aspnet.dll
+C:\Workspace\Planogram\Planogram\bin\Planogram.Model.dll
+C:\Workspace\Planogram\Planogram\bin\MongoDB.Bson.dll
+C:\Workspace\Planogram\Planogram\bin\MongoDB.Driver.dll
+C:\Workspace\Planogram\Planogram\bin\Planogram.Model.pdb
+C:\Workspace\Planogram\Planogram\bin\MongoDB.Bson.pdb
+C:\Workspace\Planogram\Planogram\bin\MongoDB.Bson.xml
+C:\Workspace\Planogram\Planogram\bin\MongoDB.Driver.pdb
+C:\Workspace\Planogram\Planogram\bin\MongoDB.Driver.xml
 C:\Workspace\Planogram\Planogram\bin\Castle.Core.dll
 C:\Workspace\Planogram\Planogram\bin\Castle.Core.xml

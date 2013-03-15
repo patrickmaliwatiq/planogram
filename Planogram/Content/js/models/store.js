@@ -21,10 +21,5 @@
 
 Planogram.Collections.Stores = Backbone.Collection.extend({
     model: Planogram.Models.Store,
-    fetch: function () {
-        this.reset([
-            new Planogram.Models.Store({ Id: "london-drugs", Name: "London Drugs", AccountId: "account-1"}),
-            new Planogram.Models.Store({ Id: "game-stop", Name: "GameStop", AccountId: "account-2"})
-        ]);
-    }
+    url: "/api/stores"
 });

@@ -168,6 +168,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\Handlers\StoresModule.cs" />
+    <Compile Include="API\Handlers\DisplaysModule.cs" />
     <Compile Include="API\Handlers\PlanogramModule.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Bootstrapper.cs" />
@@ -204,14 +206,18 @@
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\sass\components\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Planogram\Edit.cshtml" />

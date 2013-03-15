@@ -39,3 +39,23 @@ li {
 .clickable {
     cursor: pointer;
 }
+
+.display {
+    &.placed {
+        position:relative;
+        margin:1em 0 3em;
+    }
+
+    &.placed:after {
+        content:"";
+        position:absolute;
+        bottom:-15px; /* value = - border-top-width - border-bottom-width */
+        left:50px; /* controls horizontal position */
+        border-width:15px 15px 0; /* vary these values to change the angle of the vertex */
+        border-style:solid;
+        border-color:#F5A9A9 transparent;
+        /* reduce the damage in FF3.0 */
+        display:block; 
+        width:0;
+    }
+}

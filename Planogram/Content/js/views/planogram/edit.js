@@ -2,7 +2,7 @@
     Planogram.App.Page = Backbone.View.extend({
         el: 'body',
         initialize: function () {
-            Planogram.App.displays = new Planogram.Collections.Displays();
+            Planogram.App.displays = new Planogram.Collections.Displays({storeId: STORE_ID});
             Planogram.App.playlists = new Planogram.Collections.Playlists();
 
             Planogram.App.blueprint = new Planogram.Views.Blueprint();
@@ -86,7 +86,11 @@
             var self = this;
             _.bindAll(this);
             this.model.on('change', this.render);
-            this.$el.draggable();
+            this.$el.draggable({
+                stop: function (event, ui) {
+                    self.model.set("Coordinates", ui.position);
+                }
+            });
             this.$el.droppable({
                 drop: function(event, ui) {
                     var playlistId = $(ui.draggable).attr("id");
@@ -119,6 +123,7 @@
         },
         displayPlaced: function(event, args) {
             this.$el.droppable({activeClass: "active-display"});
+            this.$el.addClass("placed");
             if (this.playlistsVisible !== args.showPlaylists) {
                 this.playlistsVisible = args.showPlaylists;
                 this.render();

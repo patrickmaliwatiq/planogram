@@ -15,15 +15,8 @@ namespace Planogram.Model
         public string Name { get; set; }
         public Guid StoreId { get; set; }
         public IEnumerable<Guid> PlaylistIds { get; set; }
-        public string SecretKey { get; set; }
         public DisplayType Type { get; set; }
-        public DisplayOperatingSystem OperatingSystem { get; set; }
-        public string UserAgent { get; set; }
-        public DateTime? LastLoginTime { get; set; }
-        public DateTime Created { get; set; }
-        public DateTime? Removed { get; set; }
-
-        public IList<string> SupportedLocales { get; set; }
+       
     }
 
     public enum DisplayType
@@ -32,12 +25,5 @@ namespace Planogram.Model
         Browse,
         AdPlay,
         Stream2
-    }
-
-    public enum DisplayOperatingSystem
-    {
-        Unknown,
-        Windows,
-        IOS
     }
 }

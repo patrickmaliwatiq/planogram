@@ -168,6 +168,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\Handlers\Constants.cs" />
+    <Compile Include="API\Handlers\PlaylistsModule.cs" />
     <Compile Include="API\Handlers\StoresModule.cs" />
     <Compile Include="API\Handlers\DisplaysModule.cs" />
     <Compile Include="API\Handlers\PlanogramModule.cs" />

@@ -6,11 +6,11 @@ using Planogram.Server.Planogram;
 
 namespace Planogram.API.Handlers
 {
+
     public class DisplaysModule : NancyModule
     {
         public DisplaysModule()
         {
-            Get["/api/helloworld"] = x => "Hello world";
             Get["/api/displays/{storeid}"] = x => GetDisplays(x.storeid);
         }
 
@@ -23,7 +23,7 @@ namespace Planogram.API.Handlers
                             Id = Guid.NewGuid(),
                             Name = "Browse Display",
                             Type = DisplayType.Browse,
-                            PlaylistIds = new List<Guid>{Guid.NewGuid(), Guid.NewGuid()},
+                            PlaylistIds = new List<Guid>{Constants.BrowsePlaylist1Id, Constants.BrowsePlaylist2Id},
                             StoreId = storeId
                         },
                         new DisplayModel

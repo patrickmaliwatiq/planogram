@@ -19,7 +19,7 @@
     },
     set: function (attributes, options) {
         Backbone.Model.prototype.set.call(this, attributes, options);
-        if (options.forceChange) {
+        if (options && options.forceChange) {
             this.trigger("change");
         }
     }

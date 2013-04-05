@@ -41,6 +41,7 @@ li {
 .display {
     &.placed {
         position: absolute !important;
+        border: 2px solid #FF0000;
     }
 
     &.placed:after {

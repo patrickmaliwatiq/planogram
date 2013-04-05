@@ -16,8 +16,9 @@
     </script>
 }
 <script type='text/template' id='browse-display-template'>
-    <div class="icon my-icons-browse"></div>
-    <p><%- Name %></p>
+    <td class="type-column"><div class="icon my-icons-browse"></div></td>
+    <td class="name-column">
+        <p><%- Name %></p>
         <ul class="assignedPlaylists">
         <% _.each(assignedPlaylists, function(playlist) { %>
             <li id=<%- playlist.Id %> class="assigned-playlist">
@@ -25,30 +26,34 @@
             <div class="clearing"></div>
             </li><% }); %>
         </ul>
+    </td>
 </script>
 <script type='text/template' id='adplay-display-template'>
-    <div class="icon my-icons-adplay"></div>
-    <p><%- Name %></p>
-  
+    <td class="type-column"><div class="icon my-icons-adplay"></div></td>
+    <td class="name-column">
+        <p><%- Name %></p>
         <ul class="assignedPlaylists">
         <% _.each(assignedPlaylists, function(playlist) { %>
             <li id=<%- playlist.Id %> class="assigned-playlist">
             <div class="pull-left"><%- playlist.DisplayName %></div>
-            <div class="clearing"></div>            
+            <div class="clearing"></div>
             </li><% }); %>
         </ul>
+    </td>
 </script>
 <script type='text/template' id='stream-display-template'>
-    <div class="icon my-icons-stream"></div>
-    <p><%- Name %></p>
+    <td class="type-column"><div class="icon my-icons-stream"></div></td>
+    <td class="name-column">
+        <p><%- Name %></p>
         <ul class="assignedPlaylists">
             <% _.each(assignedPlaylists, function(playlist) { %>
                 <li id=<%- playlist.Id %> class="assigned-playlist">
                 <li id=<%- playlist.Id %> class="assigned-playlist">
                 <div class="pull-left"><%- playlist.DisplayName %></div>
-                <div class="clearing"></div>    
+                <div class="clearing"></div>
             </li><% }); %>
         </ul>
+    </td>
 </script>
 
 <script type='text/template' id='browse-placed-display-template'>
@@ -95,15 +100,25 @@
 <div class="row">
     <div id="sidebar" class="span3" style="width: 255px">
         <ul id="tabs" class="nav nav-tabs">
-            <li class="active"><a href="#displayContainer">Displays</a></li>
+            <li class="active"><a href="#displays-tab">Displays</a></li>
             <li><a href="#playlistContainer">Playlists</a></li>
         </ul>
         <div class="tab-content" style="overflow: visible">
-            <div class="tab-pane active" id="displayContainer">
+            <div id="displays-tab" class="tab-pane active">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="type-column">Type</th>
+                            <th class="name-column">Name</th>
+                        </tr>
+                    </thead>
+                    <tbody id="displayContainer">
+                    </tbody>
+                </table>
             </div>
             <div class="tab-pane" id="playlistContainer"></div>
         </div>
-        </div>
+    </div>
     <div id="blueprint" class="span9">
         
     </div>

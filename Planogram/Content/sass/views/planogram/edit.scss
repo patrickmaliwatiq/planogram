@@ -17,11 +17,44 @@
     }
 }
 
+.table {
+    .type-column { width: 25%; }
+    .name-column {  width: 75%; }
+}
+
 .active-display {
     border: 2px solid $gray9 !important;
 }
 
-.display, .playlist{
+.sidebarDisplay{
+    &.placed{
+        color: red;
+    }
+}
+
+.placedDisplay{
+    font-family: "verdana";
+    font-size: 12px;
+    color: #000;
+    min-height: 100px;
+    width: 250px;
+    position: absolute !important;
+    border: 2px solid #FF0000;    
+    &:after {
+        content:"";
+        position:absolute;
+        bottom:-15px; /* value = - border-top-width - border-bottom-width */
+        left:50px; /* controls horizontal position */
+        border-width:15px 15px 0; /* vary these values to change the angle of the vertex */
+        border-style:solid;
+        border-color:$gray6 transparent;
+        /* reduce the damage in FF3.0 */
+        display:block; 
+        width:0;
+    }
+}
+
+.playlist{
     font-family: "verdana";
     font-size: 12px;
     color: #000;
@@ -38,30 +71,7 @@ li {
     cursor: pointer;
 }
 
-.display {
-    &.placed {
-        position: absolute !important;
-        border: 2px solid #FF0000;
-    }
-
-    &.placed:after {
-        content:"";
-        position:absolute;
-        bottom:-15px; /* value = - border-top-width - border-bottom-width */
-        left:50px; /* controls horizontal position */
-        border-width:15px 15px 0; /* vary these values to change the angle of the vertex */
-        border-style:solid;
-        border-color:$gray6 transparent;
-        /* reduce the damage in FF3.0 */
-        display:block; 
-        width:0;
-    }
-}
-
 .clearing {
     clear: both;
 }
 
-.blueprint-placed{
-    color: red;
-}

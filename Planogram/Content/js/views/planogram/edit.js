@@ -33,7 +33,7 @@
                     };
                     $(ui.draggable).trigger("displayPlaced", { coordinates: coordinates });
                 },
-                accept: '.display'
+                accept: '.sidebarDisplay,.placedDisplay'
             });
             Planogram.App.displays.on('reset', this.render);
         },
@@ -98,8 +98,8 @@
     });
 
     Planogram.Views.Display = Backbone.View.extend({
-        className: "display",
-        tagName: "div",
+        className: "sidebarDisplay",
+        tagName: "tr",
         events: {
             "displayPlaced" : "displayPlaced"
         },
@@ -127,10 +127,10 @@
             this.$el.html(this.template(templateParams));
 
             if (this.model.get("Coordinates")) {
-                this.$el.addClass("blueprint-placed");
+                this.$el.addClass("placed");
                 this.$el.draggable("disable");
             } else {
-                this.$el.removeClass("blueprint-placed");
+                this.$el.removeClass("placed");
                 this.$el.draggable({
                     stop: function(event, ui) {
                         console.log(ui.position);
@@ -148,7 +148,7 @@
     });
     
     Planogram.Views.PlacedDisplay = Backbone.View.extend({
-        className: "display placed",
+        className: "placedDisplay",
         tagName: "div",
         events: {
             "click .assigned-playlist .remove" : "removePlaylist",

@@ -1,4 +1,6 @@
-﻿#blueprint {
+﻿@import "../../vars";
+
+#blueprint {
     width: 540px;
     height: 536px;
     background: url("../../../../Content/img/planogram.jpg");
@@ -9,27 +11,23 @@
         width: 150px;
         height: 25px;
         padding: 0.5em; 
-        border: 2px solid #F5A9A9;
+        border: 2px solid $gray6;
         border-radius: 5px;
         background: #EEE;
     }
 }
 
-.icon {
-    float: left;
-}
-
 .active-display {
-    background-color: #FA58F4;
+    border: 2px solid $gray9 !important;
 }
 
 .display, .playlist{
-    font-family: "Comic Sans MS";
-    font-size: 25px;
-    color: #2EFEF7;
+    font-family: "verdana";
+    font-size: 12px;
+    color: #000;
     min-height: 100px;
     width: 250px;
-    border: 2px solid #F5A9A9;
+    border: 2px solid $gray6;
 }
 
 li {
@@ -42,8 +40,7 @@ li {
 
 .display {
     &.placed {
-        position:relative;
-        margin:1em 0 3em;
+        position: absolute !important;
     }
 
     &.placed:after {
@@ -53,9 +50,17 @@ li {
         left:50px; /* controls horizontal position */
         border-width:15px 15px 0; /* vary these values to change the angle of the vertex */
         border-style:solid;
-        border-color:#F5A9A9 transparent;
+        border-color:$gray6 transparent;
         /* reduce the damage in FF3.0 */
         display:block; 
         width:0;
     }
+}
+
+.clearing {
+    clear: both;
+}
+
+.blueprint-placed{
+    color: red;
 }

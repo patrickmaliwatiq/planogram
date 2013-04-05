@@ -21,6 +21,7 @@ Bootstrap.waitCallbackFunction = function (callback) {
 Bootstrap.load([
         "jquery",
         "jquery.ui",
+        "bootstrap.tab",
         "backbone",
         "@/Content/js/constants.js",
         "@/Content/js/utilities.js"

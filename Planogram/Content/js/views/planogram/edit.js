@@ -17,6 +17,7 @@
     Planogram.Views.Blueprint = Backbone.View.extend({
         el: '#blueprint',
         initialize: function () {
+            var self = this;
             Planogram.Utilities.makeApiCall("/planogram/" + STORE_ID, "GET", {}, function() {
             }, function() {
                 //success
@@ -24,10 +25,13 @@
             function() {
                 //error
             });
-          
             this.$el.droppable({
-                drop: function (event, ui) {
-                    $(ui.draggable).trigger("displayPlaced", { showPlaylists: true});
+                drop: function(event, ui) {
+                    var coordinates = {
+                        "top": $(ui.helper).css("top"),
+                        "left": $(ui.helper).css("left")
+                    };
+                    $(ui.draggable).trigger("displayPlaced", { coordinates: coordinates });
                 },
                 accept: '.display'
             });
@@ -39,6 +43,10 @@
         initialize: function () {
             this.displayContainer = new Planogram.Views.DisplaysContainer();
             this.playlistContainer = new Planogram.Views.PlaylistContainer();
+            $('#tabs a').click(function(e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
         }
     });
 
@@ -51,20 +59,26 @@
         render: function () {
             var self = this;
             Planogram.App.displays.each(function (display) {
-                var displayView;
+                var sidebarDisplayView;
                 switch (display.get("Type")) {
                 case Planogram.Constants.DisplayType.Browse:
-                    displayView = new Planogram.Views.BrowseDisplay({ model: display });
+                    sidebarDisplayView = new Planogram.Views.BrowseDisplay({ model: display });
+                    sidebarDisplayView.blueprintView = new Planogram.Views.BrowseDisplay({ model: display });
+                    sidebarDisplayView.blueprintView.originalView = sidebarDisplayView;
                     break;
                 case Planogram.Constants.DisplayType.AdPlay:
-                    displayView = new Planogram.Views.AdPlayDisplay({ model: display });
+                    sidebarDisplayView = new Planogram.Views.AdPlayDisplay({ model: display });
+                    sidebarDisplayView.blueprintView = new Planogram.Views.AdPlayDisplay({ model: display });
+                    sidebarDisplayView.blueprintView.originalView = sidebarDisplayView;
                     break;
                 case Planogram.Constants.DisplayType.Stream:
-                    displayView = new Planogram.Views.StreamDisplay({ model: display });
+                    sidebarDisplayView = new Planogram.Views.StreamDisplay({ model: display });
+                    sidebarDisplayView.blueprintView = new Planogram.Views.StreamDisplay({ model: display });
+                    sidebarDisplayView.blueprintView.originalView = sidebarDisplayView;
                     break;
                 default:
                 }
-                self.$el.append(displayView.render().el);
+                self.$el.append(sidebarDisplayView.render().el);
             });
         }
     });
@@ -72,9 +86,14 @@
     Planogram.Views.Display = Backbone.View.extend({
         tagName: "div",
         className: "display",
+        type: null,
+        blueprintView: null,
+        originalView: null,
+        placed: false,
         events: {
             "displayPlaced" : "displayPlaced",
-            "click .assigned-playlist .remove" : "removePlaylist"
+            "click .assigned-playlist .remove" : "removePlaylist",
+            "click #remove-display" : "removeDisplay"
         },
         attributes: function() {
             return {
@@ -82,15 +101,13 @@
             };
         },
         droppableAccept: "",
-        initialize: function() {
+        initialize: function(options) {
             var self = this;
             _.bindAll(this);
             this.model.on('change', this.render);
-            this.$el.draggable({
-                stop: function (event, ui) {
-                    self.model.set("Coordinates", ui.position);
-                }
-            });
+            if (options && options.placed) {
+                this.placed = true;
+            }
             this.$el.droppable({
                 drop: function(event, ui) {
                     var playlistId = $(ui.draggable).attr("id");
@@ -107,7 +124,6 @@
         },
         render: function() {
             var templateParams = _.clone(this.model.toJSON());
-            templateParams.playlistsVisible = this.playlistsVisible;
             var assignedPlaylists = [];
             _.each(this.model.get("PlaylistIds"), function(playlistId) {
             var playlist = _.find(Planogram.App.playlists.models, function(pl) {
@@ -119,17 +135,38 @@
             });
             templateParams.assignedPlaylists = assignedPlaylists;
             this.$el.html(this.template(templateParams));
+
+            var helper = "clone";
+            if (this.placed) {
+                this.$el.show();
+                this.$el.addClass("placed");
+                var coordinates = this.model.get("Coordinates");
+                this.$el.css({ "top": coordinates["top"], "left": coordinates["left"] });
+                this.$el.droppable({activeClass: "active-display"});
+                this.$("#remove-display").show();
+                this.$(".remove").show();
+                helper = "original";
+            }
+            this.$el.draggable({
+                stop: function(event, ui) {
+                    console.log(ui.position);
+                },
+                helper: helper
+            });
+            
             return this;
         },
         displayPlaced: function(event, args) {
-            this.$el.droppable({activeClass: "active-display"});
-            this.$el.addClass("placed");
-            if (this.playlistsVisible !== args.showPlaylists) {
-                this.playlistsVisible = args.showPlaylists;
-                this.render();
-            }
+            this.model.set({ "Coordinates": args.coordinates }, {silent:true});
+            if (this.placed) return;
+            this.blueprintView.placed = true;
+            this.$el.addClass("blueprint-placed");
+            
+            $("#blueprint").append(this.blueprintView.render().el);
+            this.$el.draggable("disable");
         },
         removePlaylist: function(event) {
+            if (!this.placed) return;
             var playlistId = $(event.currentTarget.parentElement).attr("id");
             var playlists = this.model.get("PlaylistIds");
             var itemIndex = _.indexOf(playlists, playlistId);
@@ -137,6 +174,13 @@
                 playlists.splice(itemIndex, 1);
             }
             this.model.set({ "PlaylistIds": playlists }, { forceChange: true });
+        },
+        removeDisplay: function() {
+            if (!this.placed) return;
+            this.placed = false;
+            this.originalView.$el.draggable("enable");
+            this.originalView.$el.removeClass("blueprint-placed");
+            $(this.el).hide();
         }
     });
 

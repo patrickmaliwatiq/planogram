@@ -186,8 +186,12 @@
     <Content Include="Content\css\planogram.css" />
     <Content Include="Content\css\views\planogram\edit.css" />
     <Content Include="Content\img\planogram.jpg" />
+    <Content Include="Content\img\sprites\my-icons-s5f6f22b2be.png" />
     <Content Include="Content\img\sprites\my-icons\adplay.png" />
     <Content Include="Content\img\sprites\my-icons\browse.png" />
+    <Content Include="Content\img\sprites\my-icons\collapsed.png" />
+    <Content Include="Content\img\sprites\my-icons\expanded.png" />
+    <Content Include="Content\img\sprites\my-icons\remove.png" />
     <Content Include="Content\img\sprites\my-icons\stream.png" />
     <Content Include="Content\js\constants.js" />
     <Content Include="Content\js\models\store.js" />
@@ -230,6 +234,7 @@
     <None Include="Content\sass\views\planogram\edit.scss" />
     <None Include="Content\sass\_iq.bootstrap.scss" />
     <Content Include="Views\Stores\Index.cshtml" />
+    <None Include="Content\sass\_vars.scss" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Planogram.Model\Planogram.Model.csproj">

@@ -7,7 +7,6 @@
 
             Planogram.App.blueprint = new Planogram.Views.Blueprint();
             Planogram.App.sidebar = new Planogram.Views.Sidebar();
-
             Planogram.App.playlists.fetch();
             Planogram.App.displays.fetch();
 
@@ -113,6 +112,7 @@
             this.model.on('change', this.render);
         },
         render: function() {
+            var self = this;
             var templateParams = _.clone(this.model.toJSON());
             var assignedPlaylists = [];
             _.each(this.model.get("PlaylistIds"), function(playlistId) {
@@ -135,7 +135,11 @@
                     stop: function(event, ui) {
                         console.log(ui.position);
                     },
-                    helper: "clone"
+                    helper: "clone",
+                    cursorAt: {"left": 0, "top": 0 },
+                    start: function(event, ui) {
+                        $(ui.helper).html(self._helperHtml);
+                    }
                 });
                 this.$el.draggable("enable");
             }
@@ -153,7 +157,7 @@
         events: {
             "click .assigned-playlist .remove" : "removePlaylist",
             "click #remove-display" : "removeDisplay",
-            "displayPlaced" : "displayPlaced"
+            "displayPlaced" : "displayPlaced",
         },
         attributes: function() {
             return {
@@ -173,6 +177,11 @@
                 accept: this.droppableAccept,
                 greedy: true
             });
+            this.detailView = new Planogram.Views.DisplayDetailsView(this.model);
+            this.$el.on("click", this.showDetails);
+        },
+        showDetails: function() {
+            this.detailView.show(this.$el);
         },
         drop: function(playlistId) {
             var playlistIds = this.model.get("PlaylistIds");
@@ -181,6 +190,7 @@
         },
         render: function() {
             if (this.model.get("Coordinates")) {
+                var self = this;
                 var templateParams = _.clone(this.model.toJSON());
                 var assignedPlaylists = [];
                 _.each(this.model.get("PlaylistIds"), function(playlistId) {
@@ -198,8 +208,13 @@
                 this.$el.droppable({ activeClass: "active-display" });
 
                 this.$el.draggable({
+                    start: function() {
+                        self.detailView.quickHide();
+                        self.$el.off("click", self.showDetails);
+                    },
                     stop: function(event, ui) {
                         console.log(ui.position);
+                        self.$el.on("click", self.showDetails);
                     },
                     helper: "original"
                 });
@@ -282,6 +297,7 @@
     Planogram.Views.BrowseDisplay = Planogram.Views.Display.extend({
         droppableAccept: ".playlist.browse",
         template: _.template($('#browse-display-template').html()),
+        _helperHtml: "<div class='icon my-icons-browse'></div>",
         events: {
         },
         initialize: function() {
@@ -293,6 +309,7 @@
     Planogram.Views.AdPlayDisplay = Planogram.Views.Display.extend({
         droppableAccept: ".playlist.adplay",
         template: _.template($('#adplay-display-template').html()),
+        _helperHtml: "<div class='icon my-icons-adplay'></div>",
         events: {
         },
         initialize: function() {
@@ -304,6 +321,7 @@
     Planogram.Views.StreamDisplay = Planogram.Views.Display.extend({
         droppableAccept: ".playlist.stream",
         template: _.template($('#stream-display-template').html()),
+        _helperHtml: "<div class='icon my-icons-stream'></div>",
         events: {
         },
         initialize: function() {
@@ -340,7 +358,7 @@
     });
 
     Planogram.Views.Playlist = Backbone.View.extend({
-        tagName: "div",
+        tagName: "tr",
         className: "playlist",
         attributes : function () {
             return {
@@ -377,6 +395,7 @@
 
 Bootstrap.load([
         "@/Content/js/models/display.js",
-        "@/Content/js/models/playlist.js"
+        "@/Content/js/models/playlist.js",
+        "@/Content/js/views/common/displayDetailsView.js"
     ])
     .wait(Planogram.App.start);

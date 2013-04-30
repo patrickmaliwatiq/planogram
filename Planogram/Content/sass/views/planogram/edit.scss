@@ -1,5 +1,10 @@
 ﻿@import "../../vars";
 
+body {
+    background-color: $gray9;
+    color: $fontColor;
+}
+
 #blueprint {
     width: 540px;
     height: 536px;
@@ -54,15 +59,6 @@
     }
 }
 
-.playlist{
-    font-family: "verdana";
-    font-size: 12px;
-    color: #000;
-    min-height: 100px;
-    width: 250px;
-    border: 2px solid $gray6;
-}
-
 li {
     list-style: none;
 }
@@ -75,3 +71,50 @@ li {
     clear: both;
 }
 
+.table {
+    table-layout: fixed;
+    td { overflow: hidden; }
+    td .icon { margin: -3px 0; }
+    .dropdown { display: none; margin-top: -2px; }
+    tr:hover .dropdown, tr.active .dropdown { display: block; }
+    th.sortable { cursor: pointer; }
+
+    tbody tr.active td,
+    tbody tr.active th {
+        background-color: $tableBackgroundHover;
+    }
+}
+
+.table-scrollable {
+    overflow: hidden;
+    position: relative;
+    padding: 36px 0 0 0;
+    background: $gray10;
+    
+    .table-scrollable-inner {
+        background: $gray9;
+        height: 500px;
+        overflow: auto;
+        
+        .table {
+            width: 100%;
+
+            thead th {
+                padding: 0px 8px;
+            }
+
+            thead tr th > * {
+                position: absolute;
+                top: 8px;
+            }
+        }
+    }
+}
+
+.ui-draggable-helper {
+    td{display: none}
+}
+
+#display-details{
+    position: absolute;
+}

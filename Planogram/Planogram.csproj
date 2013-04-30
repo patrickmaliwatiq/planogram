@@ -175,6 +175,7 @@
     <Compile Include="API\Handlers\PlanogramModule.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Bootstrapper.cs" />
+    <Content Include="Content\js\views\common\displayDetailsView.js" />
     <Compile Include="Controllers\PlanogramController.cs" />
     <Compile Include="Controllers\StoresController.cs" />
     <Compile Include="Global.asax.cs">
